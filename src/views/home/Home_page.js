@@ -50,19 +50,21 @@ export default function HomePage() {
         return taskCategories;
     };
 
-    useEffect(async () => {
-        try {
-            const fetchResponse = await Server.get("/task");
-            if (fetchResponse.status === 201) {
-                const dbTasks = fetchResponse.data.tasks;
-                const formattedTasks = formatTasks(dbTasks);
-                setAllTasks(formattedTasks)
+    useEffect( () => {
+        const fetchData = async () => {
+            try {
+                const fetchResponse = await Server.get("/task");
+                if (fetchResponse.status === 201) {
+                    const dbTasks = fetchResponse.data.tasks;
+                    const formattedTasks = formatTasks(dbTasks);
+                    setAllTasks(formattedTasks)
+                }
+            }
+            catch (err) {
+                console.log(err.message)
             }
         }
-        catch (err) {
-            console.log(err.message)
-        }
-
+        fetchData();
 
     }, []);
 
