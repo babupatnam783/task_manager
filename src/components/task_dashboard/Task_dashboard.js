@@ -1,6 +1,5 @@
 import React ,{useState} from 'react';
-import { DndContext, DragOverlay, useDroppable, useDraggable, closestCenter, closestCorners } from '@dnd-kit/core';
-import { SortableContext, arrayMove } from '@dnd-kit/sortable';
+import { DndContext, DragOverlay, closestCenter} from '@dnd-kit/core';
 import './Task_dashboard.css';
 import DroppableColumn from './droppable_column/droppable_column';
 import { TaskCard } from '../task_card/Task_card';

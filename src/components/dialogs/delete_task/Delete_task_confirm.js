@@ -6,7 +6,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 import Server from "../../../server/ServerDetails";
-import { SnackbarMessage } from "../../message_snackbar/Message_Snackbar";
 
 export const DeleteTaskConfirmDialog = ({
   open,

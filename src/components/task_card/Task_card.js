@@ -10,7 +10,7 @@ import { DeleteTaskConfirmDialog } from "../dialogs/delete_task/Delete_task_conf
 import { EditTaskDetilsDialog } from "../dialogs/edit_task/Edit_Task_Details";
 import { SnackbarMessage } from "../message_snackbar/Message_Snackbar";
 export const TaskCard = ({ task, tasks, setTasks, activeId, handleOpenViewTaskDialog }) => {
-    const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+    const { attributes, listeners, setNodeRef, } = useDraggable({
         id: task.id,
     });
     const [bOpenViewTask, setOpenViewTask] = useState(false);

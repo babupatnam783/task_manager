@@ -7,9 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import Server from "../../../server/ServerDetails";
+import { SnackbarMessage } from '../../message_snackbar/Message_Snackbar';
 
 export const EditTaskDetilsDialog = ({ open, setOpenEditTask, task, tasks, setTasks }) => {
   const [oTask, SetTask] = React.useState(task);
@@ -179,20 +178,12 @@ export const EditTaskDetilsDialog = ({ open, setOpenEditTask, task, tasks, setTa
           </Button>
         </DialogActions>
       </Dialog>
-      <Snackbar
-        open={bOpenSnackBar}
-        autoHideDuration={6000}
-        onClose={() => setOpenSnackBar(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }} // Positioning the Snackbar
-      >
-        <Alert
-          onClose={() => setOpenSnackBar(false)}
-          severity="error"
-          sx={{ width: "100%" }}
-        >
-          {sErrorMessage}
-        </Alert>
-      </Snackbar>
+       <SnackbarMessage
+        bOpenSnackBar={bOpenSnackBar}
+        setOpenSnackBar={setOpenSnackBar}
+        sMessage={sErrorMessage}
+        sMessType={sMessageType}
+      />
     </>
   );
 };
