@@ -69,7 +69,6 @@ export default function HomePage() {
     function handleOpenCreateTaskDialog(event) {
         setOpenCreateTask(true);
     }
-
     return (
         <div className="task_manager_mainpage_background">
             <div className="button-container">
