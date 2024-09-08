@@ -1,0 +1,28 @@
+name: Deploy React App to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main # Triggers deployment on push to the "main" branch (adjust this based on your main branch name)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' 
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the React app
+      run: npm run build
+
+    - name: Deploy to Firebase Hosting
+      run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}

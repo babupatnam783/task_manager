@@ -1,0 +1,83 @@
+/* Styles for the Home page */
+.task_manager_mainpage_background {
+    background-color: white;
+    padding-top: 70px;
+    max-height: 100vh;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.button-container {
+    margin: 20px auto;
+}
+
+.add-task-button {
+    text-transform: none !important;
+    font-size: 16px !important;
+    ;
+    width: 150px;
+}
+
+.search_container_background {
+    background-color: #f5f5f5;  
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;  
+    /* margin: 10px 0; */
+}
+
+.search_input_container {
+    display: flex;
+    align-items: center;
+}
+
+.search_label {
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.search_input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 400px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.search_input:focus {
+    border-color: #007bff;
+    border: 2px solid #007bff;
+    outline: none;
+}
+
+.sort_dropdown_container {
+    display: flex;
+    align-items: center;
+
+}
+
+.sort_label {
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.sort_dropdown {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 100px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.sort_dropdown:focus {
+    border-color: #007bff;
+    border: 2px solid #007bff;
+    outline: none;
+}

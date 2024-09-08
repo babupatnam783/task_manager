@@ -1,0 +1,40 @@
+.task-dashboard-container {
+    display: flex;                     
+    gap: 20px;                        
+    padding: 20px;                   
+}
+.task-column-title{
+    background-color:#007bff;    
+    margin-bottom: 10px; 
+    text-align: start;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.task-column {
+    background-color: white;        
+    border-radius: 8px;   
+    margin: 16px;         
+    padding: 10px;                    
+    width: 400px;                    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #ccc;
+    transition: box-shadow 0.3s;
+}
+
+/* .task-column:hover {
+    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.3);
+} */
+
+
+.task-card {
+    background-color: white;          
+    border: 1px solid #ccc;          
+    border-radius: 5px;               
+    padding: 10px;
+    margin: 5px 0;           
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+}
