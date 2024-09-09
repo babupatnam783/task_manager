@@ -115,7 +115,7 @@ function SignUpPage() {
                 emailVerified: user.emailVerified
             };
             const googleResposne = await Server.post('/auth/google',userDetails);
-            if(googleResposne.status == 200){
+            if(googleResposne.status === 200){
                 Cookies.set('token', googleResposne.idToken, { expires: 7, path: '/', secure: true, sameSite: 'Strict' });
                 navigate('/home')  
             }
