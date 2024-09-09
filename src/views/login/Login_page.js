@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Server from "../../server/ServerDetails";
 import { SnackbarMessage } from "../../components/message_snackbar/Message_Snackbar";
+import { auth, provider } from '../../firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 function LoginPage() {
 
@@ -73,6 +75,31 @@ function LoginPage() {
 
     }
 
+    const signInWithGoogle = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            const idToken = await user.getIdToken(); // Fetch the ID token
+    
+            // Prepare user details to send to backend
+            const userDetails = {
+                uid: user.uid,
+                displayName: user.displayName,
+                email: user.email,
+                idToken: idToken, 
+                photoURL: user.photoURL,
+                emailVerified: user.emailVerified
+            };
+            const googleResposne = await Server.post('/auth/google',userDetails);
+            if(googleResposne.status == 200){
+                Cookies.set('token', googleResposne.idToken, { expires: 7, path: '/', secure: true, sameSite: 'Strict' });
+                navigate('/home')  
+            }
+        } catch (error) {
+            console.error("Error signing in with Google: ", error);
+        }
+    };
+
     return (
         <>
             <div class='login-wrapper'>
@@ -88,7 +115,7 @@ function LoginPage() {
                     <div>
                         <h6>Don't have an account? <strong className="signup-link" onClick={handleNavigateSignup} >Signup</strong></h6>
 
-                        <button className="google-btn">Login with Google</button>
+                        <button className="google-btn" onClick={signInWithGoogle}>Login with Google</button>
                     </div>
                 </div>
             </div>

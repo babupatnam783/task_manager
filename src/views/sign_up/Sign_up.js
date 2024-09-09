@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Server from "../../server/ServerDetails";
 import { SnackbarMessage } from "../../components/message_snackbar/Message_Snackbar";
 import Cookies from 'js-cookie';
+import { auth, provider } from '../../firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 function SignUpPage() {
     const [oSignupCredentials, setSignupCredentials] = React.useState({ "FirstName": "", "LastName": "", "Email": "", "Password": "", "ConfirmPassword": "" });
@@ -96,6 +98,32 @@ function SignUpPage() {
         }
 
     }
+
+    const signUpWithGoogle = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            const idToken = await user.getIdToken(); // Fetch the ID token
+    
+            // Prepare user details to send to backend
+            const userDetails = {
+                uid: user.uid,
+                displayName: user.displayName,
+                email: user.email,
+                idToken: idToken, 
+                photoURL: user.photoURL,
+                emailVerified: user.emailVerified
+            };
+            const googleResposne = await Server.post('/auth/google',userDetails);
+            if(googleResposne.status == 200){
+                Cookies.set('token', googleResposne.idToken, { expires: 7, path: '/', secure: true, sameSite: 'Strict' });
+                navigate('/home')  
+            }
+        } catch (error) {
+            console.error("Error signing in with Google: ", error);
+        }
+    };
+
     return (
         <>
             <div class='login-wrapper'>
@@ -114,7 +142,7 @@ function SignUpPage() {
                     <div>
                         <h6>Already have an account? <strong className="signup-link" onClick={handleNavigateLogin}>Login</strong></h6>
 
-                        <button className="google-btn">Signup with Google</button>
+                        <button className="google-btn" onClick={signUpWithGoogle}>Signup with Google</button>
                     </div>
                 </div>
             </div>
