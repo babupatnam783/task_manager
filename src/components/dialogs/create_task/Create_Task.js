@@ -65,7 +65,7 @@ export const CreateTaskDialog = ({ open, setOpenCreateTask, tasks }) => {
         );
         if (creatTaskresponse.status === 201) {
           var data = creatTaskresponse.data.data;
-          tasks["todo"].push({ ...oCreatedTask, id: data._id, CreatedAt: oCreatedTask.CreatedAt });
+          tasks["todo"].push({ ...oCreatedTask, id: data._id, CreatedAt: data.CreatedAt });
           setErrorMessage(creatTaskresponse.data.message);
           setMessageType("success");
           setOpenSnackBar(true);
